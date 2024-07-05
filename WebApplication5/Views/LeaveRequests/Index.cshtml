@@ -1,0 +1,63 @@
+﻿@model IEnumerable<WebApplication5.Models.LeaveRequest>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Leave Requests</h2>
+
+<form method="get" action="@Url.Action("Index")">
+    <div>
+        <label for="fromDate">From Date:</label>
+        <input type="date" id="fromDate" name="fromDate" />
+    </div>
+    <div>
+        <label for="toDate">To Date:</label>
+        <input type="date" id="toDate" name="toDate" />
+    </div>
+    <button type="submit">Filter</button>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Leave Request ID</th>
+            <p>
+                <a asp-action="Create">Create New</a>
+            </p>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.EmployeeIdSortParam">
+                    Employee ID
+                </a>
+            </th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Reason</th>
+            <th>Is Approved</th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.DateNowSortParam">
+                    Time Now
+                </a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var request in Model)
+        {
+            <tr>
+                <td>@request.LeaveRequestId</td>
+                <td>@request.EmployeeId</td>
+                <td>@request.StartDate.ToShortDateString()</td>
+                <td>@request.EndDate.ToShortDateString()</td>
+                <td>@request.Reason</td>
+                <td>@request.IsApproved</td>
+                <td>@request.DateNow.ToShortDateString()</td>
+            </tr>
+        <td>
+            <a asp-action="Edit" asp-route-id="@request.LeaveRequestId">Edit</a> |
+            <a asp-action="Details" asp-route-id="@request.LeaveRequestId">Details</a> |
+            <a asp-action="Delete" asp-route-id="@request.LeaveRequestId">Delete</a>
+        </td>
+        }
+    </tbody>
+</table>
