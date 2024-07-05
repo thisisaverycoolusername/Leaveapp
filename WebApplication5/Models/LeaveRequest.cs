@@ -27,6 +27,6 @@ namespace WebApplication5.Models
         [Required]
         public string Reason { get; set; }
 
-        public bool? IsApproved { get; set; } // Nullable to indicate pending status
+        public bool? IsApproved { get; set; } 
     }
 }

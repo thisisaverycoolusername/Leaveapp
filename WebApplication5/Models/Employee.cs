@@ -17,7 +17,7 @@ namespace WebApplication5.Models
         [MaxLength(100)]
         public string Email { get; set; }
 
-        // Other employee related fields
+    
         public ICollection<LeaveRequest> LeaveRequests { get; set; } = new List<LeaveRequest>();
     }
 }
